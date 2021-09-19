@@ -1,0 +1,50 @@
+  
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  --blue: #4e53a5;
+  --blue-alt: rgb(54,57,112);
+  --white: #fff;
+  --green: #70c797;
+  --error: #cf6679;
+  height: 100%;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  background: rgb(78,83,165);
+  background: linear-gradient(90deg, rgba(78,83,165,1) 0%, rgba(54,57,112,1) 100%);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+}
+
+img, iframe {
+  display: block;
+}
+
+#root {
+  height: 100%;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.app main {
+  height: 100%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .app {
+    width: 90%;
+  }
+}

@@ -1,0 +1,54 @@
+header {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header .logo .image {
+  font-size: 32px;
+  color: var(--green);
+  animation: rotate-logo 10s linear infinite;
+}
+
+header .logo .text {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+  margin-left: 8px;
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 32px;
+}
+
+header nav a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+header nav a:hover,
+header nav a.active {
+  color: var(--green);
+  text-decoration: underline;
+}
+
+@keyframes rotate-logo {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100%{
+    transform:rotate(360deg);
+  }
+}

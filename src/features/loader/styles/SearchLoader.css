@@ -1,0 +1,20 @@
+.search-loader-wrap {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+}
+
+.search-loader img {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
