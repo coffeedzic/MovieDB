@@ -7,6 +7,7 @@ import Movies from './features/grid/components/Movies'
 import Shows from './features/grid/components/Shows'
 import SingleMovie from './features/grid/components/SingleMovie'
 import SingleShow from './features/grid/components/SingleShow'
+import Error from './features/error/components/Error'
 
 import './App.css'
 
@@ -30,7 +31,7 @@ const App = () => {
           <SingleShow />
         </Route>
         <Route>
-          <div className="error">Error</div>
+          <Error />
         </Route>
       </Switch>
     </div>
