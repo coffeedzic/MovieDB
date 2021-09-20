@@ -5,6 +5,8 @@ import axios from 'axios'
 import { setLoading } from '../../../redux/reducers/settings-reducer'
 import { setTopMovies, setSearchMovies } from '../../../redux/reducers/movies-reducer'
 
+import Loader from '../../loader/components/Loader'
+
 import noimage from '../images/noimage.png'
 import '../styles/Grid.css'
 
@@ -36,17 +38,25 @@ const Movies = () => {
     axios.get(`https://api.themoviedb.org/3/search/movie?api_key=8f27b280bc7fc63dd2247eb5e1926ac7&language=en-US&query=${query}&page=1&include_adult=false`)
     .then(response => {
       dispatch(setSearchMovies(response.data.results))
-      dispatch(setLoading(false))
     })
   }
 
   useEffect(() => {
     if(query.length > 2) {
-      searchMoviesFetch()
+      const timeout = setTimeout(() => {
+        searchMoviesFetch()
+        dispatch(setLoading(false))
+      }, 350)
+      
+      return () => {
+        clearTimeout(timeout)
+      }
     } else {
       if(!siteInitialized) {
         setSiteInitialized(true)
         topMoviesFetch()
+      } else {
+        dispatch(setLoading(false))
       }
     }
   }, [query])
@@ -119,9 +129,16 @@ const Movies = () => {
         </div>
       )
     } else {
-      return(
-        <div className="response">No results.</div>
-      )
+      if(loading) {
+        return(
+          <Loader />
+        )        
+      } else {
+        return(
+          <div className="response">No results.</div>
+        ) 
+      }
+           
     }
   }
 

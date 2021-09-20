@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setQuery, setTyping } from '../../../redux/reducers/search-reducer'
+import { setLoading } from '../../../redux/reducers/settings-reducer'
 
 import SearchLoader from '../../loader/components/SearchLoader'
 
@@ -12,11 +13,12 @@ const Search = () => {
   const dispatch = useDispatch()
 
   const handleInput = event => {
+    dispatch(setLoading(true))
     dispatch(setQuery(event.target.value))
     dispatch(setTyping(true))
     setTimeout(() => {
       dispatch(setTyping(false))
-    }, 500)
+    }, 1000)
   }
   return(
     <div className="search">

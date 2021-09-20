@@ -5,11 +5,14 @@ import axios from 'axios'
 import { setLoading } from '../../../redux/reducers/settings-reducer'
 import { setTopShows, setSearchShows } from '../../../redux/reducers/shows-reducer'
 
+import Loader from '../../loader/components/Loader'
+
 import noimage from '../images/noimage.png'
 import '../styles/Grid.css'
 
 const Shows = () => {
   const [siteInitialized, setSiteInitialized] = useState(false)
+  const loading = useSelector(state => state.settings.loading)
   const topShows = useSelector(state => state.shows.topShows)
   const searchShows = useSelector(state => state.shows.searchShows)
   const query = useSelector(state => state.search.query)
@@ -34,18 +37,26 @@ const Shows = () => {
     dispatch(setLoading(true))
     axios.get(`https://api.themoviedb.org/3/search/tv?api_key=8f27b280bc7fc63dd2247eb5e1926ac7&language=en-US&page=1&query=${query}&include_adult=false`)
     .then(response => {
-      dispatch(setSearchShows(response.data.results))
-      dispatch(setLoading(false))     
+      dispatch(setSearchShows(response.data.results))   
     })
   }
 
   useEffect(() => {
     if(query.length > 2) {
-      searchShowsFetch()
+      const timeout = setTimeout(() => {
+        searchShowsFetch()
+        dispatch(setLoading(false))
+      }, 350)
+      
+      return () => {
+        clearTimeout(timeout)
+      }
     } else {
       if(!siteInitialized) {
         setSiteInitialized(true)
         topShowsFetch()
+      } else {
+        dispatch(setLoading(false))
       }
     }
   }, [query])
@@ -118,9 +129,15 @@ const Shows = () => {
         </div>
       )
     } else {
-      return(
-        <div className="response">No results.</div>
-      )
+      if(loading) {
+        return(
+          <Loader />
+        )
+      } else {
+        return(
+          <div className="response">No results.</div>
+        )
+      }
     }
   }
 
