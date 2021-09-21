@@ -12,9 +12,15 @@ Movie DB application created with ReactJS & Redux as entry project for bloola Gm
 
 - Top 30 movies & shows
 
+![Top 30](https://apps.coffeedzic.com/moviedb/1.jpg)
+
 - Search for movies & shows
 
+![Search](https://apps.coffeedzic.com/moviedb/2.jpg)
+
 - Display single movie/show
+
+![Single movie](https://apps.coffeedzic.com/moviedb/3.jpg)
 
 ## Test it localy
 
